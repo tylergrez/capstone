@@ -1,0 +1,108 @@
+* {
+}
+
+html {
+  font-family: 'Lilita One', cursive;
+}
+
+@media (max-width: 549px) {
+  nav > .fa-bars {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .hidden--mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  * {
+	flex-direction: column;
+  }
+}
+
+.menu {
+  background-color: #ba3b0a;
+  color: #ffffff;
+  width: 100vw ;
+  height: 5vh;
+}
+
+.menu > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.menu > ul > li {
+  display: flex;
+  align-content: space-between;
+  padding: 0px 30px 0px 30px;
+  color: #ffffff;
+}
+
+.menu a {
+  color: #ffffff;
+}
+
+#search-bar {
+  display: flex;
+  justify-content: center;
+  width: 100vw ;
+}
+
+#image-header {
+  width: 100vw ;
+  height: 500px ;
+}
+
+.recommendations img {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 5px;
+  width: 200px;
+}
+
+.recommendations ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.recommendations li {
+  list-style-type: none;
+}
+
+.recommendations-category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.footer {
+  background-color: #ba3b0a;
+  color: #ffffff;
+  width: 100vw ;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  text-align: center;
+}
+
+.footer > label {
+  display: flex;
+  align-content: space-between;
+  padding: 0px 30px 0px 30px;
+  color: #ffffff;
+}
+
+.footer> input {
+  display: flex;
+  align-content: space-between;
+  padding: 0px 30px 0px 30px;
+}
