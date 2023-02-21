@@ -1,6 +1,6 @@
 export default [
-  { title: "Home", text: "OneTicket | Home" },
-  { title: "About", text: "OneTicket | About Us" },
-  { title: "Contact", text: "OneTicket | Contact Us" },
-  { title: "Search", text: "OneTicket | Event Search" },
+  { title: "Home", text: "Home" },
+  { title: "About", text: "About Us" },
+  { title: "Contact", text: "Contact Us" },
+  { title: "Search", text: "Event Search" },
 ];

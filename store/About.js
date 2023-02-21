@@ -1,4 +1,4 @@
 export default {
-  header: "OneTicket | About",
+  header: "About",
   view: "About"
 };
