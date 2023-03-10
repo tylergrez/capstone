@@ -1,7 +1,7 @@
 import html from "html-literal";
 
 export default () => html `<section id="main"><div id="search-bar">
-<input type="text" placeholder="Search team, zip, event, venue or date" style="width: 500px; height: 25px;" />
+<input type="search" class="event-search" placeholder="Search team, zip, event, venue or date" />
 </div>
 <div class="recommendations" id="popular-in-area">
 <ul>
@@ -11,6 +11,16 @@ export default () => html `<section id="main"><div id="search-bar">
   <li><a class ="popArea1" href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
   <li><a class="popArea2" href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
   <li><a class="popArea3" href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
+</ul>
+</div>
+<div class="recommendations" id="popular-in-area">
+<ul>
+  <div class="recommendations-category" id="upcoming-near-user">
+    <li class="recommendations-text"><h3>Upcoming Events Near You</h3></li>
+  </div>
+  <li><a class ="nearUser1" href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
+  <li><a class="nearUser2" href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
+  <li><a class="nearUser3" href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
 </ul>
 </div>
 <div class="recommendations" id="popular-for-user">

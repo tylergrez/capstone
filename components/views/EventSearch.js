@@ -3,23 +3,29 @@ import html from "html-literal";
 export default () => html`<div id="search-bar">
 <input type="text" placeholder="Search team, zip, event, venue or date" style="width: 500px; height: 25px;" />
 </div>
-<div class="recommendations" id="popular-in-area">
-<ul>
-  <div class="recommendations-category" id="popular-in-area-text">
-    <li class="recommendations-text"><h3>Popular Events In Your Area</h3></li>
+<div id="results">
+  <table id="resultsTable">
+    <div id="tableHeads">
+      <tr id="headersRow">
+        <th>Event & Date</th>
+        <th>Seat Information</th>
+        <th>Vendor</th>
+        <th>Price</th>
+      </tr>
+    </div>
+  </table>
   </div>
-  <li><a href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
-  <li><a href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
-  <li><a href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
-</ul>
-</div>
-<div class="recommendations" id="popular-for-user">
-<ul>
-  <div class="recommendations-category" id="popular-for-user-text">
-    <li class="recommendations-text"><h3>Popular Events You Might Like</h3></li>
-  </div>
-  <li><a href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
-  <li><a href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
-  <li><a href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
-</ul>
-</div>`;
+`;
+
+//create a loop or use array method to create tr, and td with API data.
+// center entire table as well
+
+// ${st.pizzas
+//   .map(pizza => {
+//     return `<tr><td>${pizza.crust}</td><td>${pizza.cheese}</td><td>${
+//       pizza.sauce
+//     }</td><td>${pizza.toppings.join(" & ")}</td><td>${
+//       pizza.customer
+//     }</td></tr>`;
+//   })
+//   .join("")}

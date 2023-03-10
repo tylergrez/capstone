@@ -1,6 +1,39 @@
 * {
 }
 
+#header, #footer {
+  width: 100%;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+}
+
+#search-bar {
+  padding-top: 5px;
+}
+
+.event-search {
+  width: auto;
+  min-width: 50%;
+  height: auto;
+}
+
+.contact-input {
+  width: auto;
+  min-width: 30%;
+  height: auto;
+}
+
+#contact-submit-button {
+  display: flex;
+  justify-content: center;
+}
+
+#contact-input-name, #contact-input-email, #contact-input-phone, #contact-input-text {
+}
+
 html {
   font-family: 'Lilita One', cursive;
 }
@@ -27,7 +60,9 @@ html {
   background-color: #ba3b0a;
   color: #ffffff;
   width: 100vw ;
-  height: 5vh;
+  height: 6vh;
+  display: flex;
+  justify-content: center;
 }
 
 .menu > ul {
@@ -40,7 +75,7 @@ html {
 .menu > ul > li {
   display: flex;
   align-content: space-between;
-  padding: 0px 30px 0px 30px;
+  padding: 0px 20px 0px 20px;
   color: #ffffff;
 }
 
@@ -74,7 +109,7 @@ html {
 
 .recommendations ul {
   display: grid;
-  grid-template-columns: 115px 300px 300px 300px;
+  grid-template-columns: 115px 250px 250px 300px;
 }
 
 .recommendations li {
@@ -120,4 +155,10 @@ input {
 .written-content {
   display: flex;
   justify-content: center;
+}
+
+#results {
+  display: flex;
+  justify-content: center;
+  padding-top: 10vh;
 }
