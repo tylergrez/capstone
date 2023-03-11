@@ -21,43 +21,63 @@ function render (state = store.Home) {
   ${Main(state)}
   ${Footer()}
   `;
-  afterRender();
+  afterRender(state);
   router.updatePageLinks();
 }
 
-function afterRender() {
+function afterRender(state) {
   // add menu toggle to bars icon in nav bar
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
 }
 
-// add router.hooks (see class SPA for example) to begin implementing API
-// router.hooks({
-//   before: (done, params) => {
-//     const page = params && params.hasOwnProperty("page") ? capitalize(params.page) : "Home";
-//     // Add a switch case statement to handle multiple routes
-//     switch (view) {
-//       case "Home":
-//         axios
-//           .get(
-//             // add in API url when I have it, don't forget to read over .then statement and correct if necessary
-//             ``
-//           )
-//           .then(response => {
-//             console.log(response.data);
-//             done();
-//           }
-//       default :
-//         done();
-//     }
-//   },
-//   already: (params) => {
-//     const view = params && params.data && params.data.view ? capitalize(params.data.view) : "Home";
 
-//     render(store[view]);
-//   }
-// });
+router.hooks({
+  before: (done, params) => {
+    const view =
+      params && params.data && params.data.view
+        ? capitalize(params.data.view)
+        : "Home"; // Add a switch case statement to handle multiple routes
+    // Add a switch case statement to handle multiple routes
+    switch (view) {
+      case "Home":
+        axios
+          .get(
+            // add in API url when I have it, don't forget to read over .then statement and correct if necessary
+            `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM_API_KEY}`
+          )
+          .then(response => {
+            console.log(response.data);
+            done();
+          });
+          break;
+          case "Search":
+            axios
+              .get(
+                // add in API url when I have it, don't forget to read over .then statement and correct if necessary
+                `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM_API_KEY}`
+              )
+              .then(response => {
+                console.log(response.data);
+                store.EventSearch.eventSearch = {};
+                store.EventSearch.eventSearch.eventName = response.data._embedded.events[0].name ;
+                store.EventSearch.eventSearch.eventDate = response.data._embedded.events[0].dates.start.localDate ;
+                store.EventSearch.eventSearch.eventTime = response.data._embedded.events[0].dates.start.localTime ;
+                store.EventSearch.eventSearch.eventUrl = response.data._embedded.events[0].url ;
+                store.EventSearch.eventSearch.performer = response.data._embedded.events[0]._embedded.attractions[0].name ;
+                done();
+              });
+      default :
+        done();
+    }
+  },
+  already: (params) => {
+    const view = params && params.data && params.data.view ? capitalize(params.data.view) : "Home";
+
+    render(store[view]);
+  }
+});
 
 // render (); //the router object replaces the render function, router.on needs to be last item listed in index.js
 router
