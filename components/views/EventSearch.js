@@ -1,16 +1,16 @@
 import html from "html-literal";
 
-export default () => html`<div id="search-bar">
+export default st => html`<div id="search-bar">
 <input type="text" placeholder="Search team, zip, event, venue or date" style="width: 500px; height: 25px;" />
 </div>
 <div id="results">
   <table id="resultsTable">
     <div id="tableHeads">
       <tr id="headersRow">
-        <th>Event & Date</th>
-        <th>Seat Information</th>
-        <th>Vendor</th>
-        <th>Price</th>
+        <th id="column-one">Event & Date</th>
+        <th id="column-two">Seat Information</th>
+        <th id="column-three">Vendor</th>
+        <th id="column-four">Price</th>
       </tr>
     </div>
   </table>
