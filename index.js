@@ -52,22 +52,37 @@ router.hooks({
             done();
           });
           break;
-          case "Search":
+          case "Events":
             axios
               .get(
                 // add in API url when I have it, don't forget to read over .then statement and correct if necessary
-                `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM_API_KEY}`
+                `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM_API_KEY}&size=100`
               )
               .then(response => {
+                store.Events.eventSearch = {};
                 console.log(response.data);
-                store.EventSearch.eventSearch = {};
-                store.EventSearch.eventSearch.eventName = response.data._embedded.events[0].name ;
-                store.EventSearch.eventSearch.eventDate = response.data._embedded.events[0].dates.start.localDate ;
-                store.EventSearch.eventSearch.eventTime = response.data._embedded.events[0].dates.start.localTime ;
-                store.EventSearch.eventSearch.eventUrl = response.data._embedded.events[0].url ;
-                store.EventSearch.eventSearch.performer = response.data._embedded.events[0]._embedded.attractions[0].name ;
+                store.Events.eventSearch = response.data._embedded.events;
+                // console.log(response.data._embedded.events[0].name);
+                // store.Events.eventSearch.name = response.data._embedded.events[0].name ;
+                // console.log(store.Events.eventSearch.name);
+                // store.Events.eventSearch.eventDate = response.data._embedded.events[0].dates.start.localDate ;
+                // console.log(store.Events.eventSearch.eventDate);
+                // store.Events.eventSearch.eventTime = response.data._embedded.events[0].dates.start.localTime ;
+                // console.log(store.Events.eventSearch.eventTime);
+                // store.Events.eventSearch.eventUrl = response.data._embedded.events[0].url ;
+                // console.log(store.Events.eventSearch.eventUrl);
+                // store.Events.eventSearch.performer = response.data._embedded.events[0]._embedded.attractions[0].name ;
+                // console.log(store.Events.eventSearch.performer);
+                console.log(store.Events.eventSearch);
                 done();
-              });
+              })
+              .catch (
+                (err) => {
+                  console.log(err);
+                  done();
+                }
+              );
+              break;
       default :
         done();
     }
