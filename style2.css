@@ -163,3 +163,12 @@ input {
   padding-top: 10vh;
 }
 
+#contact-form > label{
+  display: flex;
+  justify-content: center;
+}
+
+.contact-input {
+  display: flex;
+  justify-content: center;
+}

@@ -3,18 +3,20 @@ const express = require("express");
 
 const dotenv = require("dotenv");
 
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
+
+const contact = require("./routers/contact");
 
 dotenv.config();
 
-// mongoose.connect(process.env.MONGODB);
-// const db = mongoose.connection;
+mongoose.connect(process.env.MONGODB);
+const db = mongoose.connection;
 
-// db.on("error", console.error.bind(console, "Connection Error:"));
-// db.once(
-//   "open",
-//   console.log.bind(console, "Successfully opened connection to Mongo!")
-// );
+db.on("error", console.error.bind(console, "Connection Error:"));
+db.once(
+  "open",
+  console.log.bind(console, "Successfully opened connection to Mongo!")
+);
 
 const PORT = process.env.PORT || 4040; // we use || to provide a default value
 // Initialize the Express application
@@ -51,6 +53,10 @@ app.get("/status", (request, response) => {
   // End and return the response
   response.status(200).json({ message: "Service healthy" });
 });
+
+// write app.get, app.post, app.use
+
+app.use("/contact", contact);
 
 // Tell the Express app to start listening
 // Let the humans know I am running and listening on 4040
