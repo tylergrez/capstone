@@ -26,11 +26,38 @@ function render (state = store.Home) {
 }
 
 function afterRender(state) {
-  // add menu toggle to bars icon in nav bar
-  document.querySelector(".fa-bars").addEventListener("click", () => {
+   // add menu toggle to bars icon in nav bar
+   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
+  if (state.view === "Contact") {
+    document.querySelector("form").addEventListener("submit", event => {
+      event.preventDefault();
+
+    const inputList = event.target.elements;
+    console.log("Input Element List", inputList);
+
+  const requestData = {
+    name: inputList.name.value,
+    email: inputList.email.value,
+    phone: inputList.phone.value,
+    freeText: inputList.freeText.value
+  };
+  console.log("request body", requestData);
+
+  axios
+      .post (`${process.env.CONTACT_API_URL}`, requestData)
+      .then (response => {
+        // store.Contact.contact.push(response.data);
+        router.navigate("/Contact");
+      })
+      .catch(error => {
+        console.log("It puked", error);
+      });
+    });
+  }
 }
+
 
 
 router.hooks({
