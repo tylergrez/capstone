@@ -79,37 +79,56 @@ router.hooks({
             done();
           });
           break;
+          // case "Events":
+          //   axios
+          //     .get(
+          //       // add in API url when I have it, don't forget to read over .then statement and correct if necessary
+          //       `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM_API_KEY}&size=10`
+          //     )
+              // .then(response => {
+              //   store.Events.eventSearchTM = {};
+              //   console.log(response.data);
+              //   store.Events.eventSearchTM = response.data._embedded.events;
+              //   // console.log(response.data._embedded.events[0].name);
+              //   // store.Events.eventSearch.name = response.data._embedded.events[0].name ;
+              //   // console.log(store.Events.eventSearch.name);
+              //   // store.Events.eventSearch.eventDate = response.data._embedded.events[0].dates.start.localDate ;
+              //   // console.log(store.Events.eventSearch.eventDate);
+              //   // store.Events.eventSearch.eventTime = response.data._embedded.events[0].dates.start.localTime ;
+              //   // console.log(store.Events.eventSearch.eventTime);
+              //   // store.Events.eventSearch.eventUrl = response.data._embedded.events[0].url ;
+              //   // console.log(store.Events.eventSearch.eventUrl);
+              //   // store.Events.eventSearch.performer = response.data._embedded.events[0]._embedded.attractions[0].name ;
+              //   // console.log(store.Events.eventSearch.performer);
+              //   console.log(store.Events.eventSearchTM);
+              //   done();
+              // })
+              // .catch (
+              //   (err) => {
+              //     console.log(err);
+              //     done();
+              //   }
+              // );
+              // break;
           case "Events":
-            axios
-              .get(
-                // add in API url when I have it, don't forget to read over .then statement and correct if necessary
-                `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${process.env.TM_API_KEY}&size=100`
-              )
-              .then(response => {
-                store.Events.eventSearch = {};
-                console.log(response.data);
-                store.Events.eventSearch = response.data._embedded.events;
-                // console.log(response.data._embedded.events[0].name);
-                // store.Events.eventSearch.name = response.data._embedded.events[0].name ;
-                // console.log(store.Events.eventSearch.name);
-                // store.Events.eventSearch.eventDate = response.data._embedded.events[0].dates.start.localDate ;
-                // console.log(store.Events.eventSearch.eventDate);
-                // store.Events.eventSearch.eventTime = response.data._embedded.events[0].dates.start.localTime ;
-                // console.log(store.Events.eventSearch.eventTime);
-                // store.Events.eventSearch.eventUrl = response.data._embedded.events[0].url ;
-                // console.log(store.Events.eventSearch.eventUrl);
-                // store.Events.eventSearch.performer = response.data._embedded.events[0]._embedded.attractions[0].name ;
-                // console.log(store.Events.eventSearch.performer);
-                console.log(store.Events.eventSearch);
-                done();
-              })
-              .catch (
-                (err) => {
-                  console.log(err);
-                  done();
-                }
-              );
-              break;
+              axios
+                .get(
+                    // add in API url when I have it, don't forget to read over .then statement and correct if necessary
+                    `https://api.seatgeek.com/2/events?client_id=${process.env.SEATGEEK_CLIENT_ID}&client_secret=${process.env.SEATGEEK_CLIENT_SECRET}`
+                  )
+                .then(response => {
+                    store.Events.eventSearchSG = {};
+                    console.log(response.data);
+                    store.Events.eventSearchSG = response.data.events;
+                    done();
+                  })
+                  .catch (
+                    (err) => {
+                      console.log(err);
+                      done();
+                    }
+                  );
+                  break;
       default :
         done();
     }
