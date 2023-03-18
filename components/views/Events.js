@@ -11,10 +11,16 @@ export default state => html`<div id="search-bar">
         <th id="column-three">Vendor</th>
         <th id="column-four">Price</th>
       </tr>
-      ${state.eventSearch
+      ${state.eventSearchTM
   .map(Events => {
     return `
     <tr><td>${Events.name}<br>${Events.dates.start.localDate}&nbsp; &nbsp;${Events.dates.start.localTime}</td><td>Seat Info</td><td>Vendor</td><td>Price</td>
+    `
+  }).join("")}
+  ${state.eventSearchSG
+  .map(Events => {
+    return `
+    <tr><td>${Events.short_title}<br>&nbsp; &nbsp;</td><td>Seat Info</td><td>Vendor</td><td>Price</td>
     `
   }).join("")}
   </table>
