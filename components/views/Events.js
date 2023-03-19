@@ -1,5 +1,5 @@
 import html from "html-literal";
-import tmLogo from "../../assets/img/Ticketmaster-Emblem.png";
+// import tmLogo from "../../assets/img/Ticketmaster-Emblem.png";
 
 function randomSection() {
   min = 100 ;
@@ -27,8 +27,12 @@ function randomPrice() {
 }
 
 function timeRemove(string) {
-  string.split(".");
-  string.pop();
+  let stringSplit = string.split(":");
+  console.log(stringSplit);
+  let stringPop = stringSplit.pop();
+  console.log(stringPop);
+  let stringJoin = stringSplit.join(":");
+  return stringJoin
 }
 
 function fixSGDateTime(string) {
@@ -37,7 +41,7 @@ function fixSGDateTime(string) {
   let date = splitWord[0];
   let time = splitWord[1];
   console.log(date, time);
-  return date + time;
+  return date + "<br>" + time;
 }
 fixSGDateTime("59090T4902093");
 
@@ -59,7 +63,7 @@ export default state => html`<div id="search-bar">
       ${state.eventSearchTM
   .map(Events => {
     return `
-    <tr><td>${Events.dates.start.localDate}<br>${Events.dates.start.localTime}</td><td class="event-name-column">${Events.name}</td><td>${randomSection()} / ${randomRow()} / ${randomSeat()}</td><td><a href="${Events.url}">TM Logo</a></td><td>$${randomPrice()}</td>
+    <tr><td>${Events.dates.start.localDate}<br>${timeRemove(Events.dates.start.localTime)}</td><td class="event-name-column">${Events.name}</td><td>${randomSection()} / ${randomRow()} / ${randomSeat()}</td><td><a href="${Events.url}">TM Logo</a></td><td>$${randomPrice()}</td>
     `
   }).join("")}
   ${state.eventSearchSG

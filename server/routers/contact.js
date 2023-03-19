@@ -10,12 +10,12 @@ router.post("/", (request, response) => {
   });
 });
 
-router.get("/", (request, response) => {
-  const newContact = new Contact(request.body);
-  newContact.save((error, record) => {
-    if (error) return response.status(500).json(error);
-    return response.json(record);
-  });
-});
+// router.get("/", (request, response) => {
+//   const newContact = new Contact(request.body);
+//   newContact.save((error, record) => {
+//     if (error) return response.status(500).json(error);
+//     return response.json(record);
+//   });
+// });
 
 module.exports = router;
