@@ -1,7 +1,9 @@
 import html from "html-literal";
 
-export default () => html `<section id="about"><h1 class="written-content" id="about-header">About OneTicket</h1>
-<p class="written-content" id="about-image">OneTicket logo</p>
+import Logo from "../../assets/img/logo-no-background.png" ;
+
+export default () => html `<section id="about">
+<p class="written-content" id="about-image"><img class="main-logo" alt="OneTicket" src=${Logo}></p>
 <p class="written-content" id="about-paragraph">
   OneTicket is an application devoted to creating a one-stop shop for all event-goers. The goal
   is to give fans an easy way to shop for the best deals on tickets. By aggregating this data
