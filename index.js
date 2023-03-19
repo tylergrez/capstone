@@ -50,6 +50,7 @@ function afterRender(state) {
       .then (response => {
         // store.Contact.contact.push(response.data);
         router.navigate("/Contact");
+        alert("Thank you for your submission!")
       })
       .catch(error => {
         console.log("It puked", error);
