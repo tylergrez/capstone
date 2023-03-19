@@ -2,26 +2,26 @@ import html from "html-literal";
 // import tmLogo from "../../assets/img/Ticketmaster-Emblem.png";
 
 function randomSection() {
-  min = 100 ;
-  max = 400 ;
+  let min = 100 ;
+  let max = 400 ;
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function randomRow() {
-  min = 1 ;
-  max = 40 ;
+  let min = 1 ;
+  let max = 40 ;
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function randomSeat() {
-  min = 1 ;
-  max = 20 ;
+  let min = 1 ;
+  let max = 20 ;
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function randomPrice() {
-  min = 1 ;
-  max = 200 ;
+  let min = 1 ;
+  let max = 200 ;
   let dollars = (Math.random() * (max - min + 1) + min) ;
   return dollars.toFixed(2)
 }
@@ -43,7 +43,6 @@ function fixSGDateTime(string) {
   console.log(date, time);
   return date + "<br>" + time;
 }
-fixSGDateTime("59090T4902093");
 
 // console.logI(eventSearchSG);
 // console.log(eventSearchTM);
