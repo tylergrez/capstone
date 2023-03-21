@@ -1,5 +1,5 @@
 export default {
-  header: "OneTicket | Home",
+  // header: "OneTicket | Home",
   view: "Home",
   homeSearch: {}
 };
