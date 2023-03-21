@@ -201,3 +201,6 @@ th {
   border: black 2px solid;
 }
 
+#header {
+  margin: 0;
+}

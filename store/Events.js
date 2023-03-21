@@ -1,6 +1,8 @@
 export default {
-  header: "OneTicket | Event Search",
+  // header: "OneTicket | Event Search",
   view: "Events",
   eventSearchTM: [],
-  eventSearchSG: []
+  eventSearchSG: [],
+  eventSearchTMQuery: [],
+  eventSearchSGQuery: []
 };

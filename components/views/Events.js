@@ -68,7 +68,7 @@ function fixSGDateTime(string) {
 
 export default state =>
 html`<div id="search-bar">
-<input type="text" class="event-search" name="event-input" placeholder="Search team, location, event, or date" />
+<input type="search" class="event-search" name="event-input" placeholder="Search team, location, event, or date" />
 </div>
 <div id="results">
   <table id="resultsTable">

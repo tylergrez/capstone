@@ -1,4 +1,4 @@
 export default {
-  header: "OneTicket | Contact Us",
+  // header: "OneTicket | Contact Us",
   view: "Contact"
 };
