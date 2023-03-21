@@ -1,7 +1,7 @@
 import html from "html-literal";
 
 export default () => html `<section id="main"><div id="search-bar">
-<input type="search" class="event-search" placeholder="Search team, zip, event, venue or date" />
+<input type="search" class="event-search" placeholder="Search team, location, event, or date" />
 </div>
 <div class="recommendations" id="popular-in-area">
 <ul>
