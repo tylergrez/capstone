@@ -42,7 +42,7 @@ function afterRender(state) {
       console.log(inputArrSplit);
       let inputArrJoin = inputArrSplit.join("+");
       console.log(inputArrJoin);
-      let TMQuery = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${inputArrJoin}&apikey=${process.env.TM_API_KEY}`;
+      let TMQuery = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${inputArrJoin}&countryCode=US&apikey=${process.env.TM_API_KEY}`;
       let SGQuery = `https://api.seatgeek.com/2/events?q=${inputArrJoin}&client_id=${process.env.SEATGEEK_CLIENT_ID}&client_secret=${process.env.SEATGEEK_CLIENT_SECRET}`;
       let promiseTMQuery = axios.get(TMQuery);
       let promiseSGQuery = axios.get(SGQuery);
@@ -56,21 +56,15 @@ function afterRender(state) {
         const result2 = { response: response2, error: error2 };
         store.Events.eventSearchTM = result1.response._embedded.events ;
         store.Events.eventSearchSG = result2.response.events ;
+        console.log(TMQuery);
+        console.log(SGQuery);
+        console.log('TM Store:', store.Events.eventSearchTM);
+        console.log('SG Store:', store.Events.eventSearchSG);
         console.log('Ticketmaster API Query:', result1);
         console.log('Seatgeek API Query:', result2);
         router.navigate("/Events");
         // done();
       });
-
-
-      // const filArrTM = store.Events.eventSearchTM.filter(curr => {
-      //   return curr.name.includes(input.value) ||
-      //   curr._embedded.venues[0].city.name.includes(input.value) ||
-      //   curr._embedded.venues[0].state.stateCode.includes(input.value);
-      // })
-      // if(filArrTM.length > 0){
-      // store.Events.eventSearchTM = filArrTM;
-      // }
       router.navigate("/Events")
   });
   }
