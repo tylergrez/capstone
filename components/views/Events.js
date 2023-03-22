@@ -27,6 +27,9 @@ function randomPrice() {
 }
 
 function timeRemove(string) {
+  if (!string) {
+    return "TBA"
+  }
   let stringSplit = string.split(":");
   console.log(stringSplit);
   let stringPop = stringSplit.pop();
@@ -47,28 +50,9 @@ function fixSGDateTime(string) {
 // console.logI(eventSearchSG);
 // console.log(eventSearchTM);
 
-// function search() {
-//   var input, filter, table, tr, td, i, txtValue ;
-//   input = document.getElementsByName("event-input");
-//   table = document.getElementById("resultsTable");
-//   tr = table.getElementsByTagName("tr");
-//   filter = input.value.toUpperCase();
-//   for (i=0; i < tr.length; i++) {
-//     td = tr[i].getElementsByTagName("td")[0];
-//     if (td) {
-//       txtValue = td.textContent || td.innerText;
-//       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//         tr[i].style.display = "";
-//       } else {
-//         tr[i].style.display = "none";
-//       }
-//     }
-//   }
-// }
-
 export default state =>
 html`<div id="search-bar">
-<input type="search" class="event-search" name="event-input" placeholder="Search team, location, event, or date" />
+<input type="search" class="event-search" name="event-input" placeholder="Search team, artist, location, or date" />
 </div>
 <div id="results">
   <table id="resultsTable">
@@ -90,7 +74,7 @@ html`<div id="search-bar">
   ${state.eventSearchSG
   .map(Events => {
     return `
-    <tr><td>${fixSGDateTime(Events.datetime_local)}</td><td>${Events.venue.city}, ${Events.venue.state}</td><td class="event-name-column">${Events.short_title}</td><td>${randomSection()} / ${randomRow()} / ${randomSeat()}</td><td><a href="${Events.url}">SG Logo</a></td><td>$${randomPrice()}</td>
+    <tr><td>${fixSGDateTime(Events.datetime_local)}</td><td>${Events.venue.city}, ${Events.venue.state}</td><td class="event-name-column">${Events.title}</td><td>${randomSection()} / ${randomRow()} / ${randomSeat()}</td><td><a href="${Events.url}">SG Logo</a></td><td>$${randomPrice()}</td>
     `
   }).join("")}
       </div>
