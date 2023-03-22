@@ -32,7 +32,7 @@ function afterRender(state) {
    document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
-  if (state.view === "Events"){
+  if (state.view === "Home"){
     const input = document.querySelector('input[type="search"]');
 
     input.addEventListener("search", () => {
@@ -42,7 +42,7 @@ function afterRender(state) {
       console.log(inputArrSplit);
       let inputArrJoin = inputArrSplit.join("+");
       console.log(inputArrJoin);
-      let TMQuery = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${inputArrJoin}&apikey=${process.env.TM_API_KEY}`;
+      let TMQuery = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${inputArrJoin}&countryCode=US&apikey=${process.env.TM_API_KEY}`;
       let SGQuery = `https://api.seatgeek.com/2/events?q=${inputArrJoin}&client_id=${process.env.SEATGEEK_CLIENT_ID}&client_secret=${process.env.SEATGEEK_CLIENT_SECRET}`;
       let promiseTMQuery = axios.get(TMQuery);
       let promiseSGQuery = axios.get(SGQuery);
@@ -56,22 +56,83 @@ function afterRender(state) {
         const result2 = { response: response2, error: error2 };
         store.Events.eventSearchTM = result1.response._embedded.events ;
         store.Events.eventSearchSG = result2.response.events ;
+        console.log(TMQuery);
+        console.log(SGQuery);
+        console.log('TM Store:', store.Events.eventSearchTM);
+        console.log('SG Store:', store.Events.eventSearchSG);
         console.log('Ticketmaster API Query:', result1);
         console.log('Seatgeek API Query:', result2);
         router.navigate("/Events");
         // done();
       });
-
-
-      // const filArrTM = store.Events.eventSearchTM.filter(curr => {
-      //   return curr.name.includes(input.value) ||
-      //   curr._embedded.venues[0].city.name.includes(input.value) ||
-      //   curr._embedded.venues[0].state.stateCode.includes(input.value);
-      // })
-      // if(filArrTM.length > 0){
-      // store.Events.eventSearchTM = filArrTM;
-      // }
       router.navigate("/Events")
+  });
+  }
+  if (state.view === "Events"){
+    const input = document.querySelector('input[type="search"]');
+    input.addEventListener("search", () => {
+      console.log(input.value);
+      let lowerCase = input.value.toLowerCase();
+      let inputArrSplit = lowerCase.split(" ");
+      console.log(inputArrSplit);
+      let inputArrJoin = inputArrSplit.join("+");
+      console.log(inputArrJoin);
+      let TMQuery = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${inputArrJoin}&countryCode=US&apikey=${process.env.TM_API_KEY}`;
+      let SGQuery = `https://api.seatgeek.com/2/events?q=${inputArrJoin}&client_id=${process.env.SEATGEEK_CLIENT_ID}&client_secret=${process.env.SEATGEEK_CLIENT_SECRET}`;
+      let promiseTMQuery = axios.get(TMQuery);
+      let promiseSGQuery = axios.get(SGQuery);
+      Promise.allSettled([promiseTMQuery, promiseSGQuery])
+      .then(results => {
+        const response1 = results[0].status === 'fulfilled' ? results[0].value.data : null;
+        const response2 = results[1].status === 'fulfilled' ? results[1].value.data : null;
+        const error1 = results[0].status === 'rejected' ? results[0].reason : null;
+        const error2 = results[1].status === 'rejected' ? results[1].reason : null;
+        const result1 = { response: response1, error: error1 };
+        const result2 = { response: response2, error: error2 };
+        store.Events.eventSearchTM = result1.response._embedded.events ;
+        store.Events.eventSearchSG = result2.response.events ;
+        console.log(TMQuery);
+        console.log(SGQuery);
+        console.log('TM Store:', store.Events.eventSearchTM);
+        console.log('SG Store:', store.Events.eventSearchSG);
+        console.log('Ticketmaster API Query:', result1);
+        console.log('Seatgeek API Query:', result2);
+        router.navigate("/Events");
+        // done();
+      });
+      router.navigate("/Events")
+  });
+  function sortTableByColumn(table, column, asc = true) {
+    const dirModifier = asc ? 1 : -1;
+    const tBody = table.tBodies[0];
+    const rows = Array.from(tBody.querySelectorAll("tr"));
+
+    const sortedRows = rows.sort((a, b) => {
+      const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+      const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+
+      return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+    });
+
+    while (tBody.firstChild) {
+      tBody.removeChild(tBody.firstChild);
+    }
+
+    tBody.append(...sortedRows);
+
+    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+    table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
+    table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+  }
+
+  document.querySelectorAll(".table-sortable th").forEach(headerCell => {
+    headerCell.addEventListener("click", () => {
+      const tableElement = headerCell.parentElement.parentElement.parentElement;
+      const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
+      const currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+      sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
+    });
   });
   }
   if (state.view === "Contact") {
