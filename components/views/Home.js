@@ -3,6 +3,7 @@ import html from "html-literal";
 export default () => html `<section id="main"><div id="search-bar">
 <input type="search" class="event-search" placeholder="Search team, artist, location, or event" />
 </div>
+<div id="recs-container">
 <div class="recommendations" id="popular-in-area">
 <ul>
   <div class="recommendations-category" id="popular-in-area-text">
@@ -32,4 +33,6 @@ export default () => html `<section id="main"><div id="search-bar">
   <li><a class ="popUser2" href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
   <li><a class ="popUser3" href=""><img src="https://images.pexels.com/photos/1757433/pexels-photo-1757433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" /></a></li>
 </ul>
-</div></section>`;
+</div>
+</div>
+</section>`;

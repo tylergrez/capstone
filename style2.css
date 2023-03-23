@@ -38,61 +38,83 @@ html {
   font-family: 'Lilita One', cursive;
 }
 
-@media (min-width: 549px) {
+@media (min-width: 550px) {
   nav > .fa-bars {
     display: none;
   }
+  .menu {
+    width: 100vw ;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+  }
+  .menu > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #ffffff;
+  }
+
+  .menu > ul > li {
+    display: flex;
+    align-content: space-between;
+    padding: 0px 20px 0px 20px;
+    color: #ffffff;
+  }
+
+  .menu a {
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+  }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 549px) {
   .hidden--mobile {
-    display: none;
+    display: none !important;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  nav > i {
+    padding: 1rem;
+    font-size: 2em;
+  }
+
+  nav > ul {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 0;
+  }
+
+  nav > ul > li {
+    padding: 0.5rem;
+    list-style-type: none;
+  }
+  .menu a {
+    color: #ffffff;
+    font-size: 15px;
+    text-decoration: none;
   }
 }
 
-@media (max-width: 550px) {
-  * {
-	flex-direction: column;
-  }
+#recs-container {
+  overflow-x: scroll;
 }
 
 .menu {
   background-color: #ba3b0a;
   color: #ffffff;
-  width: 100vw ;
-  height: 6vh;
-  display: flex;
-  justify-content: center;
-}
-
-.menu > ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  color: #ffffff;
-}
-
-.menu > ul > li {
-  display: flex;
-  align-content: space-between;
-  padding: 0px 20px 0px 20px;
-  color: #ffffff;
-}
-
-.menu a {
-  color: #ffffff;
-  font-size:
 }
 
 #search-bar {
   display: flex;
   justify-content: center;
   width: 100vw ;
-}
-
-#image-header {
-  width: 100vw ;
-  height: 500px ;
 }
 
 .recommendations img {
@@ -162,6 +184,8 @@ input {
   display: flex;
   justify-content: center;
   padding-top: 10vh;
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 #contact-form > label{
@@ -188,20 +212,35 @@ td {
   padding: 10px;
 }
 
-.event-name-column {
-  display: flex;
-  justify-content: center;
-}
-
 .bottom-of-search {
   margin-left: 5px;
 }
 
-th {
-  border: black 2px solid;
+#resultsTable {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+tr.header-border {
+  outline: solid black;
+  background-color: gray;
+  color: white;
 }
 
 #header {
   margin: 0;
 }
 
+#tm-table-logo {
+  height: 3vw;
+  width: 3vw;
+}
+
+#sg-table-logo {
+  height: 2.5vw;
+  width: 2.5vw;
+}
+
+tr.border{
+  outline: thin solid;
+}
