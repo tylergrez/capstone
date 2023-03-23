@@ -101,21 +101,15 @@ html {
     text-decoration: none;
   }
   #resultsTable {
-    width: 90vw;
-    margin-left: 20px;
+    margin-left: 180px;
     margin-right: 20px;
-    display: flex;
-    flex-wrap: wrap;
   }
   #apiResults {
     width: 90vw;
-    display: flex;
-    flex-wrap: wrap;
   }
-}
-
-#recs-container {
-  overflow-x: scroll;
+  #recs-container {
+    overflow-x: scroll;
+  }
 }
 
 .menu {
