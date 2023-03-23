@@ -1,6 +1,7 @@
 import html from "html-literal";
 import { isNaN } from "lodash";
-// import tmLogo from "../../assets/img/Ticketmaster-Emblem.png";
+import tmLogo from "../../assets/img/tm-logo.png";
+import sgLogo from "../../assets/img/sg-logo-2.png";
 
 function randomSection() {
   let min = 100 ;
@@ -48,116 +49,15 @@ function fixSGDateTime(string) {
   return date + "<br>" + time;
 }
 
-// var tables = document.querySelectorAll("table.sortable"), table, thead, headers, i, j;
-// for (i = 0; i < tables.length; i++) {
-//   table = tables[i];
-
-//   if (thead = table.querySelector("thead")) {
-//       headers = thead.querySelectorAll("th");
-
-//       for (j = 0; j < headers.length; j++) {
-//           headers[j].innerHTML = "<a href='#'>" + headers[j].innerText + "</a>";
-//       }
-
-//       thead.addEventListener("click", sortTableFunction(table));
-//   }
-// }
-
-// function sortTableFunction(table) {
-//   return function(ev) {
-//       if (ev.target.tagName.toLowerCase() == 'a') {
-//           sortRows(table, siblingIndex(ev.target.parentNode));
-//           ev.preventDefault();
-//       }
-//   };
-// }
-
-// function siblingIndex(node) {
-//   var count = 0 ;
-
-//   while (node = node.previousElementSibling) {
-//     count++ ;
-//   }
-//   return count;
-// }
-
-// function sortRows(table, columnIndex) {
-//   var rows = table.querySelectorAll("tbody tr"),
-//   sel = "thead th:nth-child(" + (columnIndex + 1) + ")",
-//   sel2 = "td:nth-child(" + (columnIndex + 1) + ")",
-//   classList = table.querySelector(sel).classList,
-//   values = [],
-//   cls = "",
-//   allNum = true,
-//   val,
-//   index,
-//   node ;
-
-//   if (classList) {
-//     if (classList.contains("date")){
-//       cls = "date" ;
-//     } else if (classList.contains("number")) {
-//       cls = "number" ;
-//     }
-//   }
-//   for (index = 0; index < rows.length; index++) {
-//     node = rows[index].querySelector(sel2);
-//     val = node.innerText ;
-//     if (isNaN(val)) {
-//       allNum = false ;
-//     } else {
-//       val = parseFloat(val);
-//     }
-//     values.push({value: val, row: rows[index] });
-//   }
-//   if (cls == "" && allNum) {
-//     cls = "number" ;
-//   }
-//   if (cls == "number") {
-//     values.sort(sortNumberVal);
-//     values = values.reverse();
-// } else if (cls == "date") {
-//     values.sort(sortDateVal);
-// } else {
-//     values.sort(sortTextVal);
-// }
-// for (var idx = 0; idx < values.length; idx++) {
-//   table.querySelector("tbody").appendChild(values[idx].row);
-// }
-// }
-
-// function sortNumber (a, b) {
-//   return a-b
-// }
-// function sortDateVal(a, b) {
-//   var dateA = Date.parse(a.value),
-//   dateB = Date.parse(b.value);
-//   return sortNumber(dateA, dateB);
-// }
-
-// function sortTextVal (a, b) {
-//   var textA = (a.value + "").toUpperCase();
-//   var textB = (b.value + "").toUpperCase();
-//   if (textA < textB) {
-//     return -1 ;
-//   }
-//   if (textA > textB) {
-//     return 1;
-//   }
-//   return 0;
-// }
-
-// console.logI(eventSearchSG);
-// console.log(eventSearchTM);
-
 export default state =>
-html`<div id="search-bar">
-<input type="search" class="event-search" name="event-input" placeholder="Search team, artist, location, or date" />
+html`
+<div id="search-bar">
+<input type="search" class="event-search" name="event-input" placeholder="Search team, artist, location or event" />
 </div>
 <div id="results">
   <table id="resultsTable" class="table-sortable">
     <thead>
-    <tr id="headersRow">
+    <tr id="headersRow" class="header-border">
         <th id="column-one">Date & Time</th>
         <th id="column-two">Location</th>
         <th id="column-three">Event</th>
@@ -171,13 +71,13 @@ html`<div id="search-bar">
       ${state.eventSearchTM
   .map(Events => {
     return `
-    <tr><td>${Events.dates.start.localDate}<br>${timeRemove(Events.dates.start.localTime)}</td><td>${Events._embedded.venues[0].city.name}, ${Events._embedded.venues[0].state.stateCode}</td><td class="event-name-column">${Events.name}</td><td>${randomSection()} / ${randomRow()} / ${randomSeat()}</td><td><a href="${Events.url}">TM Logo</a></td><td>$${randomPrice()}</td>
+    <tr class="border"><td style="text-align: center">${Events.dates.start.localDate}<br>${timeRemove(Events.dates.start.localTime)}</td><td style="text-align: center">${Events._embedded.venues[0].city.name}, ${Events._embedded.venues[0].state.stateCode}</td><td class="event-name-column" style="text-align: center">${Events.name}</td><td style="text-align: center">${randomSection()} / ${randomRow()} / ${randomSeat()}</td><td style="text-align: center"><a href="${Events.url}"><img id="tm-table-logo" src="${tmLogo}"></a></td><td style="text-align: center">$${randomPrice()}</td>
     `
   }).join("")}
   ${state.eventSearchSG
   .map(Events => {
     return `
-    <tr><td>${fixSGDateTime(Events.datetime_local)}</td><td>${Events.venue.city}, ${Events.venue.state}</td><td class="event-name-column">${Events.title}</td><td>${randomSection()} / ${randomRow()} / ${randomSeat()}</td><td><a href="${Events.url}">SG Logo</a></td><td>$${randomPrice()}</td>
+    <tr class="border"><td style="text-align: center">${fixSGDateTime(Events.datetime_local)}</td><td style="text-align: center">${Events.venue.city}, ${Events.venue.state}</td><td class="event-name-column" style="text-align: center">${Events.title}</td><td style="text-align: center">${randomSection()} / ${randomRow()} / ${randomSeat()}</td><td style="text-align: center"><a href="${Events.url}"><img id="sg-table-logo" src="${sgLogo}"></a></td><td style="text-align: center">$${randomPrice()}</td>
     `
   }).join("")}
       </div>
@@ -193,15 +93,4 @@ html`<div id="search-bar">
 `;
 
 
-//create a loop or use array method to create tr, and td with API data.
-// center entire table as well
 
-// ${st.pizzas
-//   .map(pizza => {
-//     return `<tr><td>${pizza.crust}</td><td>${pizza.cheese}</td><td>${
-//       pizza.sauce
-//     }</td><td>${pizza.toppings.join(" & ")}</td><td>${
-//       pizza.customer
-//     }</td></tr>`;
-//   })
-//   .join("")}
