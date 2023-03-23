@@ -46,7 +46,11 @@ function fixSGDateTime(string) {
   let date = splitWord[0];
   let time = splitWord[1];
   console.log("function fixSGDatetime", date, time);
-  return date + "<br>" + time;
+  let timeSplit = time.split(":");
+  let timePop = timeSplit.pop();
+  console.log(timePop);
+  let timeJoin = timeSplit.join(":");
+  return date + "<br>" + timeJoin;
 }
 
 export default state =>
@@ -88,6 +92,10 @@ html`
   <p>All times shown are in PST.</p>
   <p>All prices shown are randomly generated and not reflective of actual prices.</p>
   <p>All seat information shown is randomly generated and not reflective of the actual venues.</p>
+  <pr>All shown events from Ticketmaster are United States only.</pr>
+  <br>
+  <br>
+  <br>
   <br>
   </div>
 `;

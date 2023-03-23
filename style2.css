@@ -110,6 +110,15 @@ html {
   #recs-container {
     overflow-x: scroll;
   }
+  .recommendations img {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    width: 50px;
+    height: auto;
+    margin-left: 175px;
+    margin-right: 50px;
+  }
 }
 
 .menu {
@@ -189,7 +198,7 @@ input {
 #results {
   display: flex;
   justify-content: center;
-  padding-top: 10vh;
+  padding-top: 5vh;
   overflow-x: scroll;
   overflow-y: scroll;
 }
@@ -225,6 +234,7 @@ td {
 #resultsTable {
   border-collapse: collapse;
   border-style: hidden;
+  border-bottom: solid thin;
 }
 
 tr.header-border {
